@@ -22,7 +22,7 @@ fun BlurredWallpaperBackground(
             contentDescription = null,
             modifier = Modifier
                 .fillMaxSize()
-                .blur(radius = 6.dp),
+                .blur(radius = 12.dp),
             contentScale = ContentScale.Crop
         )
         content()
