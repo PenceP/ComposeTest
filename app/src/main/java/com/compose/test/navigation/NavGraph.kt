@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.compose.test.data.AppSettings
 import com.compose.test.screens.HomeScreen
 import com.compose.test.screens.MoviesScreen
 import com.compose.test.screens.SearchScreen
@@ -11,7 +12,11 @@ import com.compose.test.screens.SettingsScreen
 import com.compose.test.screens.TvShowsScreen
 
 @Composable
-fun NavGraph(navController: NavHostController) {
+fun NavGraph(
+    navController: NavHostController,
+    currentSettings: AppSettings = AppSettings(),
+    onSettingsChanged: (AppSettings) -> Unit = {}
+) {
     NavHost(
         navController = navController,
         startDestination = Destinations.Home.route
@@ -29,7 +34,10 @@ fun NavGraph(navController: NavHostController) {
             TvShowsScreen()
         }
         composable(Destinations.Settings.route) {
-            SettingsScreen()
+            SettingsScreen(
+                currentSettings = currentSettings,
+                onSettingsChanged = onSettingsChanged
+            )
         }
     }
 }
